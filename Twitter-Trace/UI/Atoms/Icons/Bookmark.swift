@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct svg7: Shape {
+struct Bookmark: Shape {
     func path(in rect: CGRect) -> Path {
         var path = Path()
         let width = rect.size.width
@@ -36,7 +36,7 @@ struct svg7: Shape {
 
 struct svg7_Previews: PreviewProvider {
     static var previews: some View {
-        svg7()
+        Bookmark()
             .previewLayout(.fixed(width: 400, height: 400))
     }
 }

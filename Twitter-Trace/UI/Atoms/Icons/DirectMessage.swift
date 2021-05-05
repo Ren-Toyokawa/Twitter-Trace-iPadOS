@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct svg6: Shape {
+struct DirectMessage: Shape {
     func path(in rect: CGRect) -> Path {
         var path = Path()
         let width = rect.size.width
@@ -42,7 +42,7 @@ struct svg6: Shape {
 
 struct svg6_Previews: PreviewProvider {
     static var previews: some View {
-        svg6()
+        DirectMessage()
             .previewLayout(.fixed(width: 400, height: 400))
     }
 }

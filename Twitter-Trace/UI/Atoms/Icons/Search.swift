@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct svg28: Shape {
+struct Search: Shape {
     func path(in rect: CGRect) -> Path {
         var path = Path()
         let width = rect.size.width
@@ -29,7 +29,7 @@ struct svg28: Shape {
 
 struct svg28_Previews: PreviewProvider {
     static var previews: some View {
-        svg28()
+        Search()
             .previewLayout(.fixed(width: 400, height: 400))
     }
 }

@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct svg22: Shape {
+struct Retweet: Shape {
     func path(in rect: CGRect) -> Path {
         var path = Path()
         let width = rect.size.width
@@ -49,9 +49,9 @@ struct svg22: Shape {
     }
 }
 
-struct svg22_Previews: PreviewProvider {
+struct Retweet_Previews: PreviewProvider {
     static var previews: some View {
-        svg22()
+        Retweet()
             .previewLayout(.fixed(width: 400, height: 400))
     }
 }

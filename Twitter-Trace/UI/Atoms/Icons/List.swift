@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct svg8: Shape {
+struct TweetList: Shape {
     func path(in rect: CGRect) -> Path {
         var path = Path()
         let width = rect.size.width
@@ -55,7 +55,7 @@ struct svg8: Shape {
 
 struct svg8_Previews: PreviewProvider {
     static var previews: some View {
-        svg8()
+        TweetList()
             .previewLayout(.fixed(width: 400, height: 400))
     }
 }

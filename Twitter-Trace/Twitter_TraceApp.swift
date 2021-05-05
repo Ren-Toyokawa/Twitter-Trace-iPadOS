@@ -11,7 +11,7 @@ import SwiftUI
 struct Twitter_TraceApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomeView()
         }
     }
 }

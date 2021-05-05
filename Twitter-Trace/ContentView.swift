@@ -9,8 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        Text("TEST")
     }
 }
 
@@ -20,4 +19,12 @@ struct ContentView_Previews: PreviewProvider {
             .previewLayout(.fixed(width: 1322, height: 1024))
             .previewDevice("iPad Pro (12.9-inch) (4th generation)")
     }
+}
+
+
+
+/// Thema
+extension Color {
+    static let background = Color(red: 0 / 255, green: 0 / 255, blue: 0 / 255)
+    static let baseColor = Color(red: 29 / 255, green: 161 / 255, blue: 242 / 255)
 }

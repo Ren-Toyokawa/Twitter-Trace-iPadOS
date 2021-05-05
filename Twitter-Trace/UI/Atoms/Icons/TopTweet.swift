@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct svg12: Shape {
+struct TopTweet: Shape {
     func path(in rect: CGRect) -> Path {
         var path = Path()
         let width = rect.size.width
@@ -77,9 +77,9 @@ struct svg12: Shape {
     }
 }
 
-struct svg12_Previews: PreviewProvider {
+struct TopTweet_Previews: PreviewProvider {
     static var previews: some View {
-        svg12()
+        TopTweet()
             .previewLayout(.fixed(width: 400, height: 400))
     }
 }

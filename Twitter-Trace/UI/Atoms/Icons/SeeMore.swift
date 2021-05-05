@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct svg10: Shape {
+struct SeeMore: Shape {
     func path(in rect: CGRect) -> Path {
         var path = Path()
         let width = rect.size.width
@@ -26,7 +26,7 @@ struct svg10: Shape {
 
 struct svg10_Previews: PreviewProvider {
     static var previews: some View {
-        svg10()
+        SeeMore()
             .previewLayout(.fixed(width: 400, height: 400))
     }
 }
