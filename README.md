@@ -28,7 +28,8 @@ svgファイルはChromeの拡張機能を使用しTwitterから取得してい�
 ## 各画面
 ### Home
 コード  
-https://github.com/Ren-Toyokawa/Twitter-Trace/blob/master/Twitter-Trace/UI/Pages/HomeView.swift
+https://github.com/Ren-Toyokawa/Twitter-Trace/blob/master/Twitter-Trace/UI/Pages/HomeView.swift  
+
 スクショ  
 ![Simulator Screen Shot - iPad Pro (12 9-inch) (5th generation) - 2021-05-05 at 11 09 52](https://user-images.githubusercontent.com/23397943/117090347-1344b600-ad93-11eb-9c3b-d3d40b26801c.png)
 
