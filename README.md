@@ -39,3 +39,5 @@ https://github.com/Ren-Toyokawa/Twitter-Trace/blob/master/Twitter-Trace/UI/Pages
 - [ ] Home画面
   - [ ] 各アイコンのタップ時のアニメーションの実装
   - [ ] 処理の組み込み
+- [ ] 検索画面の作成 
+
