@@ -15,6 +15,7 @@
 		350017B3262556270012179B /* Twitter_TraceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350017B2262556270012179B /* Twitter_TraceUITests.swift */; };
 		357A285B26423881005964CD /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357A285A26423881005964CD /* HomeView.swift */; };
 		357A285D264373CD005964CD /* FilledLike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357A285C264373CD005964CD /* FilledLike.swift */; };
+		357A28602644C10C005964CD /* LikeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357A285F2644C10C005964CD /* LikeButton.swift */; };
 		35A13D63262BDE77007A7A9E /* Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A13D39262BDE76007A7A9E /* Bookmark.swift */; };
 		35A13D64262BDE77007A7A9E /* svg30.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A13D3A262BDE76007A7A9E /* svg30.swift */; };
 		35A13D65262BDE77007A7A9E /* svg17.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A13D3B262BDE76007A7A9E /* svg17.swift */; };
@@ -108,6 +109,7 @@
 		350017B4262556270012179B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		357A285A26423881005964CD /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		357A285C264373CD005964CD /* FilledLike.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilledLike.swift; sourceTree = "<group>"; };
+		357A285F2644C10C005964CD /* LikeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeButton.swift; sourceTree = "<group>"; };
 		35A13D39262BDE76007A7A9E /* Bookmark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bookmark.swift; sourceTree = "<group>"; };
 		35A13D3A262BDE76007A7A9E /* svg30.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = svg30.swift; sourceTree = "<group>"; };
 		35A13D3B262BDE76007A7A9E /* svg17.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = svg17.swift; sourceTree = "<group>"; };
@@ -261,6 +263,14 @@
 			path = Pages;
 			sourceTree = "<group>";
 		};
+		357A285E2644C0D4005964CD /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				357A285F2644C10C005964CD /* LikeButton.swift */,
+			);
+			path = Button;
+			sourceTree = "<group>";
+		};
 		35A13BC326287849007A7A9E /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -277,6 +287,7 @@
 		35A13BC426287853007A7A9E /* Atoms */ = {
 			isa = PBXGroup;
 			children = (
+				357A285E2644C0D4005964CD /* Button */,
 				35A13BC52628785D007A7A9E /* Icons */,
 				35D2B89B26421C5B0023A2EC /* UserIcon.swift */,
 				35D2B89D26421C7D0023A2EC /* TweetedAt.swift */,
@@ -550,6 +561,7 @@
 				35A13D68262BDE77007A7A9E /* svg40.swift in Sources */,
 				35D2B8B226422A010023A2EC /* TweetCell.swift in Sources */,
 				35A13D74262BDE77007A7A9E /* Twitter.swift in Sources */,
+				357A28602644C10C005964CD /* LikeButton.swift in Sources */,
 				35A13D77262BDE77007A7A9E /* svg37.swift in Sources */,
 				35A13D71262BDE77007A7A9E /* SeeMore.swift in Sources */,
 				35A13D65262BDE77007A7A9E /* svg17.swift in Sources */,

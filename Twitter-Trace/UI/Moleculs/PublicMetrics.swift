@@ -40,6 +40,9 @@ struct PublicMetrics_Previews: PreviewProvider {
 }
 
 
+
+/// リプライ、リツイート、いいねなどのアイコンとカウントを表示する
+/// アイコンTap時のアニメーションを組み込むための struct
 struct PublicMetricsButton<Button: View>: View {
     let button: Button
     let count: Int
