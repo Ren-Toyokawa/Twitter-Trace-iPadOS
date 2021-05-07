@@ -38,3 +38,36 @@ struct PublicMetrics_Previews: PreviewProvider {
         .previewLayout(.fixed(width: 100, height: 100))
     }
 }
+
+
+
+/// リプライ、リツイート、いいねなどのアイコンとカウントを表示する
+/// アイコンTap時のアニメーションを組み込むための struct
+struct PublicMetricsButton<Button: View>: View {
+    let button: Button
+    let count: Int
+
+    init(count:Int, @ViewBuilder button: @escaping () -> Button) {
+        self.count = count
+        self.button = button()
+    }
+
+    var body: some View {
+        HStack(spacing: 0) {
+            button
+                .frame(width: 21, height: 19)
+
+            Text("\(count)")
+                .modifier(PublicMetricsCount())
+        }
+    }
+}
+
+struct PublicMetricsButton_Previews: PreviewProvider {
+    static var previews: some View {
+        PublicMetricsButton(count: 15) {
+            LikeButton()
+        }
+        .previewLayout(.fixed(width: 100, height: 100))
+    }
+}
