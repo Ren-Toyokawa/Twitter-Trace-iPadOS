@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct svg14: Shape {
+struct ImageIcon: Shape {
     func path(in rect: CGRect) -> Path {
         var path = Path()
         let width = rect.size.width
@@ -52,7 +52,7 @@ struct svg14: Shape {
 
 struct svg14_Previews: PreviewProvider {
     static var previews: some View {
-        svg14()
+        ImageIcon()
             .previewLayout(.fixed(width: 400, height: 400))
     }
 }
