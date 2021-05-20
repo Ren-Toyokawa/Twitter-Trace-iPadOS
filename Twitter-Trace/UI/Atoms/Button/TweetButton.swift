@@ -9,12 +9,21 @@ import SwiftUI
 
 struct TweetButton: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            Circle()
+                .fill(Color.baseColor)
+                .frame(width: 68, height: 68)
+            TweetIcon()
+                .fill(Color.white)
+                .frame(width: 30, height: 27)
+        }
+        
     }
 }
 
 struct TweetButton_Previews: PreviewProvider {
     static var previews: some View {
         TweetButton()
+            .previewLayout(.fixed(width: 400, height: 400))
     }
 }

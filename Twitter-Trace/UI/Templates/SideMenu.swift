@@ -21,44 +21,59 @@ struct SideMenu<Content: View>: View {
                 Twitter()
                     .fill(Color.baseColor)
                     .frame(width: 32, height: 32)
-                // Home
-                Home()
-                    .fill(Color.baseColor)
-                    .frame(width: 32, height: 32)
-                // Search
-                Search()
-                    .fill(Color.lightGray)
-                    .frame(width: 32, height: 32)
-                // Notification
-                Notification()
-                    .fill(Color.lightGray)
-                    .frame(width: 32, height: 32)
-                // Direct Message
-                DirectMessage()
-                    .fill(Color.lightGray)
-                    .frame(width: 32, height: 32)
-                // Bookmark
-                Bookmark()
-                    .fill(Color.lightGray)
-                    .frame(width: 32, height: 32)
-                // List
-                TweetList()
-                    .fill(Color.lightGray)
-                    .frame(width: 32, height: 32)
-                // Profile
-                UserIcon()
-                    .frame(width: 32, height: 32)
-                // See more
-                SeeMore()
-                    .fill(Color.lightGray)
-                    .frame(width: 32, height: 32)
+                
+                // Viewの個数制限のためやむをえず関数でまとめている。
+                actionIcons()
+                
+                Spacer()
+                
                 // Tweet Button
+                TweetButton()
+                
+                Spacer()
+                    .frame(height: 34)
             }
             .padding(.horizontal, 41)
             Divider()
             
             content
         }
+    }
+}
+
+func actionIcons() -> some View {
+    VStack(spacing: 41) {
+        // Home
+        Home()
+            .fill(Color.baseColor)
+            .frame(width: 32, height: 32)
+        // Search
+        Search()
+            .fill(Color.lightGray)
+            .frame(width: 32, height: 32)
+        // Notification
+        Notification()
+            .fill(Color.lightGray)
+            .frame(width: 32, height: 32)
+        // Direct Message
+        DirectMessage()
+            .fill(Color.lightGray)
+            .frame(width: 32, height: 32)
+        // Bookmark
+        Bookmark()
+            .fill(Color.lightGray)
+            .frame(width: 32, height: 32)
+        // List
+        TweetList()
+            .fill(Color.lightGray)
+            .frame(width: 32, height: 32)
+        // Profile
+        UserIcon()
+            .frame(width: 32, height: 32)
+        // See more
+        SeeMore()
+            .fill(Color.lightGray)
+            .frame(width: 32, height: 32)
     }
 }
 

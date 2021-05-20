@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct Tweet: Shape {
+struct TweetIcon: Shape {
     func path(in rect: CGRect) -> Path {
         var path = Path()
         let width = rect.size.width
@@ -40,9 +40,9 @@ struct Tweet: Shape {
     }
 }
 
-struct Tweet_Previews: PreviewProvider {
+struct TweetIcon_Previews: PreviewProvider {
     static var previews: some View {
-        Tweet()
+        TweetIcon()
             .previewLayout(.fixed(width: 400, height: 400))
     }
 }
