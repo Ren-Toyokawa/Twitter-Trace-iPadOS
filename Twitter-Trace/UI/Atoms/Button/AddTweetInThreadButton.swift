@@ -11,7 +11,8 @@ struct AddTweetInThreadButton: View {
     var body: some View {
         ZStack {
             Circle()
-                .fill(Color.baseColor)
+//                .fill(Color.baseColor)
+                .fill(Color.gray)
                 .frame(width: 25, height: 25)
             
             PlusIcon()

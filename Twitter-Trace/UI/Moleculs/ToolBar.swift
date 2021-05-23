@@ -7,24 +7,33 @@
 
 import SwiftUI
 
+/// Tweet送信画面で表示するツールバー
+/// まだ機能を提供できていないものに関しては灰色にし、非活性としている。
+/// 機能提供次第解除する。
 struct ToolBar: View {
+    @Binding var tweetText: String
+    
     var body: some View {
         HStack(spacing: 32) {
             ImageIcon()
-                .fill(Color.baseColor)
+//                .fill(Color.baseColor)
+                .fill(Color.gray)
                 .frame(width: 24, height: 24)
             GIFIcon()
-                .fill(Color.baseColor)
+//                .fill(Color.baseColor)
+                .fill(Color.gray)
                 .frame(width: 24, height: 24)
             AnalyticsIcon()
-                .fill(Color.baseColor)
+//                .fill(Color.baseColor)
+                .fill(Color.gray)
                 .frame(width: 24, height: 24)
             GeometryIcon()
-                .fill(Color.baseColor)
+//                .fill(Color.baseColor)
+                .fill(Color.gray)
                 .frame(width: 24, height: 24)
             Spacer()
             
-            ProgressCircle()
+            ProgressCircle(currentTweet: $tweetText)
                 .frame(width: 19, height: 19)
             
             Divider()
@@ -40,6 +49,7 @@ struct ToolBar: View {
 
 struct ToolBar_Previews: PreviewProvider {
     static var previews: some View {
-        ToolBar()
+        ToolBar(tweetText: .constant(""))
+            .background(Color.background)
     }
 }

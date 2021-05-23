@@ -10,35 +10,66 @@ import SwiftUI
 struct SideMenu<Content: View>: View {
     let content: Content
     
+    @State private var showSendTweetView = false
+    
     init(@ViewBuilder content: @escaping () -> Content) {
         self.content = content()
     }
     
     var body: some View {
-        HStack(alignment: .top) {
-            VStack(spacing: 41) {
-                // Twitter
-                Twitter()
-                    .fill(Color.baseColor)
-                    .frame(width: 32, height: 32)
+        ZStack(alignment: Alignment(horizontal: .center, vertical: .center)) {
+            HStack(alignment: .top) {
+                VStack(spacing: 41) {
+                    // Twitter
+                    Twitter()
+                        .fill(Color.baseColor)
+                        .frame(width: 32, height: 32)
+                    
+                    // Viewの個数制限のためやむをえず関数でまとめている。
+                    actionIcons()
+                    
+                    Spacer()
+                    
+                    // Tweet Button
+                    TweetButton()
+                        .onTapGesture {
+                            showSendTweetView.toggle()
+                        }
+                    
+                    Spacer()
+                        .frame(height: 34)
+
+                }
+                .padding(.horizontal, 23)
                 
-                // Viewの個数制限のためやむをえず関数でまとめている。
-                actionIcons()
+                Divider()
                 
-                Spacer()
-                
-                // Tweet Button
-                TweetButton()
-                
-                Spacer()
-                    .frame(height: 34)
+                content
             }
-            .padding(.horizontal, 41)
-            Divider()
             
-            content
+            // TODO: Modal を表示させる処理をここに書くべきではない気がする。
+            if showSendTweetView {
+                modalTweetSendView {
+                    showSendTweetView.toggle()
+                }
+            }
         }
+
     }
+}
+
+/// モーダルのツイート送信View
+///
+func modalTweetSendView(canelTapped: @escaping () -> Void) -> some View{
+    ZStack {
+        Color.black.opacity(0.4)
+             .edgesIgnoringSafeArea(.vertical)
+        
+        SendTweetView(state: SendTweetState(),
+                      canelTapped: canelTapped)
+            .frame(width: 840, height: 900)
+    }
+
 }
 
 func actionIcons() -> some View {
@@ -82,5 +113,6 @@ struct SideMenu_Previews: PreviewProvider {
         SideMenu {
             Text("SSSS")
         }
+        .previewLayout(.fixed(width: 840, height: 900 ))
     }
 }

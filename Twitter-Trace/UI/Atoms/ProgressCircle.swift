@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProgressCircle: View {
-    @State private var currentTweet = ""
+    @Binding var currentTweet: String
     private let maxTweetLength = 140
     
     var body: some View {
@@ -28,7 +28,7 @@ struct ProgressCircle: View {
 
 struct ProgressCircle_Previews: PreviewProvider {
     static var previews: some View {
-        ProgressCircle()
+        ProgressCircle(currentTweet: .constant(""))
             .previewLayout(.fixed(width: 22, height: 22))
     }
 }
