@@ -20,11 +20,11 @@ struct TweetTextButton: View {
             Text("ツイートする")
                 .foregroundColor(isActive ? Color.sendTweetButtonText : Color.disabledSendTweetButtonText)
         }
-        .onTapGesture {
-            if isActive {
-                
-            }
-        }
+//        .onTapGesture {
+//            if isActive {
+//                
+//            }
+//        }
     }
 }
 

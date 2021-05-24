@@ -56,12 +56,19 @@ struct Header: View {
                 .font(.custom("", size: 18))
                 .foregroundColor(Color.baseColor)
                 .onTapGesture {
+                    print("test")
                     canelTapped()
                 }
             
             Spacer()
             
             TweetTextButton(isActive: !tweetText.isEmpty)
+                .onTapGesture {
+                    if !tweetText.isEmpty {
+                        print("TEST")
+                        sendTweet(tweetText: tweetText)
+                    }
+                }
         }
         .padding(.horizontal, 24)
     }
