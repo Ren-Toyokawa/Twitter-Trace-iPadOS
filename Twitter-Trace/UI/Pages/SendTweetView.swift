@@ -29,7 +29,7 @@ struct SendTweetView: View {
             Spacer()
                 .frame(height: 10)
             // キャンセルボタンとツイートボタン
-            Header(canelTapped: canelTapped,
+            Header(closeAction: canelTapped,
                    tweetText: $state.tweetText)
             
             TweetInputArea(text: $state.tweetText)
@@ -47,7 +47,7 @@ struct SendTweetView: View {
 }
 
 struct Header: View {
-    var canelTapped = { () -> Void in }
+    var closeAction = { () -> Void in }
     @Binding var tweetText: String
     
     var body: some View {
@@ -56,7 +56,7 @@ struct Header: View {
                 .font(.custom("", size: 18))
                 .foregroundColor(Color.baseColor)
                 .onTapGesture {
-                    canelTapped()
+                    closeAction()
                 }
             
             Spacer()
@@ -65,6 +65,9 @@ struct Header: View {
                 .onTapGesture {
                     if !tweetText.isEmpty {
                         sendTweet(tweetText: tweetText)
+                        /// TODO: 非同期処理なので、ツイートするをタップ -> ツイート送信Viewを操作できなくする -> 送信完了したらクローズ
+                        /// TODO: というように変えたい
+                        closeAction()
                     }
                 }
         }

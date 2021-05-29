@@ -33,12 +33,15 @@ struct SideMenu<Content: View>: View {
                     // Tweet Button
                     TweetButton()
                         .onTapGesture {
-                            showSendTweetView.toggle()
+                            withAnimation {
+                                showSendTweetView.toggle()
+                            }
+                            
                         }
                     
                     Spacer()
                         .frame(height: 34)
-
+                    
                 }
                 .padding(.horizontal, 23)
                 
@@ -50,26 +53,47 @@ struct SideMenu<Content: View>: View {
             // TODO: Modal を表示させる処理をここに書くべきではない気がする。
             if showSendTweetView {
                 modalTweetSendView {
-                    showSendTweetView.toggle()
+                    withAnimation {
+                        showSendTweetView.toggle()
+                    }
                 }
+                .zIndex(1.0)
             }
         }
-
+        
     }
 }
 
 /// モーダルのツイート送信View
 ///
-func modalTweetSendView(canelTapped: @escaping () -> Void) -> some View{
-    ZStack {
+func modalTweetSendView(canelTapped: @escaping () -> Void) -> some View {
+    Group {
         Color.black.opacity(0.4)
-             .edgesIgnoringSafeArea(.vertical)
+            .edgesIgnoringSafeArea(.vertical)
         
         SendTweetView(state: SendTweetState(),
                       canelTapped: canelTapped)
             .frame(width: 840, height: 900)
+            .transition(.move(edge: .bottom))
     }
+}
 
+struct ModalTweetSendView: View {
+    // Cancel をタップされた時の処理
+    var canelTapped = { () -> Void in }
+    
+    var body: some View {
+        Group {
+            Color.black.opacity(0.4)
+                .edgesIgnoringSafeArea(.vertical)
+            
+            SendTweetView(state: SendTweetState(),
+                          canelTapped: canelTapped)
+                .frame(width: 840, height: 900)
+                .animation(.default.delay(0.1))
+                .transition(.move(edge: .bottom))
+        }
+    }
 }
 
 func actionIcons() -> some View {

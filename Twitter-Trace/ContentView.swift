@@ -8,8 +8,24 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var isShow = false
+    
     var body: some View {
-        Text("TEST")
+        ZStack {
+            Button("表示") {
+                withAnimation {
+                    isShow.toggle()
+                }
+            }
+            
+            if isShow {
+                modalTweetSendView {
+                    withAnimation {
+                        isShow.toggle()
+                    }
+                }
+            }
+        }
     }
 }
 
