@@ -12,8 +12,11 @@ struct HomeView: View {
         SideMenu {
             TimeLine()
                 .frame(width: 779, alignment: .center)
+            
             Divider()
+            
             SearchArea()
+            
         }
         .background(Color.background.edgesIgnoringSafeArea(.all))
     }

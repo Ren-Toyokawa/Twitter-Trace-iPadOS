@@ -10,17 +10,53 @@ import SwiftUI
 struct SideMenu<Content: View>: View {
     let content: Content
     
+    @State private var showSendTweetView = false
+    
     init(@ViewBuilder content: @escaping () -> Content) {
         self.content = content()
     }
     
     var body: some View {
-        HStack(alignment: .top) {
-            VStack(spacing: 41) {
-                // Twitter
-                Twitter()
-                    .fill(Color.baseColor)
-                    .frame(width: 32, height: 32)
+        ZStack(alignment: Alignment(horizontal: .center, vertical: .center)) {
+            HStack(alignment: .top) {
+                SideMenuIcons(tweetButtonTapped: {
+                    withAnimation {
+                        showSendTweetView.toggle()
+                    }
+                },
+                showSendTweetButton: true)
+                .padding(.horizontal, 23)
+                   
+                Divider()
+                content
+            }
+            
+            // TODO: Modal を表示させる処理をここに書くべきではない気がする。
+            if showSendTweetView {
+                ModalTweetSendView {
+                    withAnimation {
+                        showSendTweetView.toggle()
+                    }
+                }
+                .zIndex(1.0)
+            }
+        }
+    }
+}
+
+struct SideMenuIcons: View {
+    // Cancel をタップされた時の処理
+    var tweetButtonTapped = { () -> Void in }
+    var showSendTweetButton = false
+    
+    var body: some View {
+        VStack(spacing: 41) {
+            // Twitter
+            Twitter()
+                .fill(Color.baseColor)
+                .frame(width: 32, height: 32)
+            
+            Group {
                 // Home
                 Home()
                     .fill(Color.baseColor)
@@ -52,12 +88,38 @@ struct SideMenu<Content: View>: View {
                 SeeMore()
                     .fill(Color.lightGray)
                     .frame(width: 32, height: 32)
-                // Tweet Button
             }
-            .padding(.horizontal, 41)
-            Divider()
             
-            content
+            Spacer()
+            
+            if showSendTweetButton {
+                // Tweet Button
+                TweetButton()
+                    .onTapGesture {
+                        tweetButtonTapped()
+                    }
+            }
+            
+            Spacer()
+                .frame(height: 34)
+        }
+    }
+}
+
+struct ModalTweetSendView: View {
+    // Cancel をタップされた時の処理
+    var canelTapped = { () -> Void in }
+    
+    var body: some View {
+        Group {
+            Color.black.opacity(0.4)
+                .edgesIgnoringSafeArea(.vertical)
+            
+            SendTweetView(state: SendTweetState(),
+                          canelTapped: canelTapped)
+                .frame(width: 840, height: 900)
+                .animation(.default.delay(0.1))
+                .transition(.move(edge: .bottom))
         }
     }
 }
@@ -67,5 +129,6 @@ struct SideMenu_Previews: PreviewProvider {
         SideMenu {
             Text("SSSS")
         }
+        .previewLayout(.fixed(width: 840, height: 900 ))
     }
 }

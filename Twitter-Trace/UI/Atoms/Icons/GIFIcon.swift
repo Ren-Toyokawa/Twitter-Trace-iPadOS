@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct svg15: Shape {
+struct GIFIcon: Shape {
     func path(in rect: CGRect) -> Path {
         var path = Path()
         let width = rect.size.width
@@ -63,9 +63,9 @@ struct svg15: Shape {
     }
 }
 
-struct svg15_Previews: PreviewProvider {
+struct GIFIcon_Previews: PreviewProvider {
     static var previews: some View {
-        svg15()
+        GIFIcon()
             .previewLayout(.fixed(width: 400, height: 400))
     }
 }

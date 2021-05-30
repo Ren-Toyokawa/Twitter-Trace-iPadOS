@@ -41,8 +41,8 @@ https://github.com/Ren-Toyokawa/Twitter-Trace/blob/master/Twitter-Trace/UI/Pages
   - [ ] リストの切り替え処理を実装
   - [ ] State実装
   - [ ] ツイート処理を実装
-    - [ ] ツイートボタンの作成 
-    - [ ] ツイート入力エリアの作成
+    - [X] ツイートボタンの作成 
+    - [X] ツイート入力エリアの作成
     - [ ] ツイート処理の実装
       - [ ] SwiftUIで Action Patternを実現できるか調べる
       - [ ] Firestore の書き込み処理を実装
