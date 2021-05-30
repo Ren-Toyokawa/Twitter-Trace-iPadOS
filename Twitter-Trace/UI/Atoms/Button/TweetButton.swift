@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+/// Tweet Send View を表示するためのボタン
+/// TODO: View じゃなくてボタンを継承する方が良いかもしれない。
 struct TweetButton: View {
     var body: some View {
         ZStack {

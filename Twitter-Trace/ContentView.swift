@@ -11,21 +11,7 @@ struct ContentView: View {
     @State var isShow = false
     
     var body: some View {
-        ZStack {
-            Button("表示") {
-                withAnimation {
-                    isShow.toggle()
-                }
-            }
-            
-            if isShow {
-                modalTweetSendView {
-                    withAnimation {
-                        isShow.toggle()
-                    }
-                }
-            }
-        }
+        Text("Hello World")
     }
 }
 
