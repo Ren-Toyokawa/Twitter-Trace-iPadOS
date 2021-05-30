@@ -39,12 +39,12 @@ https://github.com/Ren-Toyokawa/Twitter-Trace/blob/master/Twitter-Trace/UI/Pages
 - [ ] Home画面
   - [ ] 各アイコンのタップ時のアニメーションの実装
   - [ ] リストの切り替え処理を実装
-  - [ ] State実装
-  - [ ] ツイート処理を実装
+  - [X] State実装
+  - [X] ツイート処理を実装
     - [X] ツイートボタンの作成 
     - [X] ツイート入力エリアの作成
-    - [ ] ツイート処理の実装
-      - [ ] SwiftUIで Action Patternを実現できるか調べる
-      - [ ] Firestore の書き込み処理を実装
+    - [X] ツイート処理の実装
+      - [X] SwiftUIで Action Patternを実現できるか調べる
+      - [X] Firestore の書き込み処理を実装
 - [ ] 検索画面の作成 
 
