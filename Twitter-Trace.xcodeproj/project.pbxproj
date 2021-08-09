@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -61,6 +61,7 @@
 		35A13D8A262BDE77007A7A9E /* SearchTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A13D60262BDE77007A7A9E /* SearchTopic.swift */; };
 		35A13D8B262BDE77007A7A9E /* NewMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A13D61262BDE77007A7A9E /* NewMessage.swift */; };
 		35A13D8C262BDE77007A7A9E /* TopTweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A13D62262BDE77007A7A9E /* TopTweet.swift */; };
+		35CC333526C10D4700E125C3 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 35CC333426C10D4700E125C3 /* ComposableArchitecture */; };
 		35D2B88C263FB9BD0023A2EC /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D2B88B263FB9BD0023A2EC /* Text.swift */; };
 		35D2B88E264145130023A2EC /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D2B88D264145130023A2EC /* TextField.swift */; };
 		35D2B890264154BC0023A2EC /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D2B88F264154BC0023A2EC /* Config.swift */; };
@@ -194,6 +195,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35CC333526C10D4700E125C3 /* ComposableArchitecture in Frameworks */,
 				266CA48FF31601234B297512 /* Pods_Twitter_Trace.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -463,6 +465,9 @@
 			dependencies = (
 			);
 			name = "Twitter-Trace";
+			packageProductDependencies = (
+				35CC333426C10D4700E125C3 /* ComposableArchitecture */,
+			);
 			productName = "Twitter-Trace";
 			productReference = 35001792262556250012179B /* Twitter-Trace.app */;
 			productType = "com.apple.product-type.application";
@@ -537,6 +542,9 @@
 				Base,
 			);
 			mainGroup = 35001789262556250012179B;
+			packageReferences = (
+				35CC333326C10D4700E125C3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+			);
 			productRefGroup = 35001793262556250012179B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1074,6 +1082,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		35CC333326C10D4700E125C3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.23.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		35CC333426C10D4700E125C3 /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 35CC333326C10D4700E125C3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3500178A262556250012179B /* Project object */;
 }
