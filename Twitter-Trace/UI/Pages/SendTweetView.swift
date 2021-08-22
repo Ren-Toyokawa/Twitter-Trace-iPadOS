@@ -5,9 +5,43 @@
 //  Created by 豊川廉 on 2021/05/16.
 //
 
+import ComposableArchitecture
 import SwiftUI
 
-/// SendTweetView  の状態を保持するクラス
+/// MARK: State
+struct TestState: Equatable {
+    var userIcon = ""
+    var tweetText = ""
+    var image = ""
+    var gif = ""
+    var geometry = ""
+}
+
+// MARK: Action
+enum SendTweetAction: Equatable {
+    case tweetTextChange(String)
+    case sendTweetButtonTapped
+}
+
+// MARK: Environment
+struct SendTweetEnvironment {
+    var mainQueue: AnySchedulerOf<DispatchQueue>
+}
+
+// MARK: Reducer
+let sendTweetReducer = Reducer<TestState, SendTweetAction, SendTweetEnvironment> {
+    state, action, environment in
+    switch action {
+    case let .tweetTextChange(tweetText):
+        print(tweetText)
+        state.tweetText = tweetText
+        return .none
+    case .sendTweetButtonTapped:
+        return .none
+    }
+}
+
+// SendTweetView  の状態を保持するクラス
 class SendTweetState: ObservableObject {
     // TODO: まだ確定していないメンバに関してはすべてStringで仮置き、決まり次第Replace
     @Published var userIcon = ""
@@ -17,37 +51,47 @@ class SendTweetState: ObservableObject {
     @Published var geometry = "";
 }
 
-/// Tweet 内容を入力し、送信するView
+// MARK: View
+// Tweet 内容を入力し、送信するView
 struct SendTweetView: View {
+    var store: Store<TestState, SendTweetAction> = Store(initialState: .init(), reducer: sendTweetReducer, environment: SendTweetEnvironment(mainQueue: .main))
     @ObservedObject var state: SendTweetState
     
     // Cancel をタップされた時の処理
     var canelTapped = { () -> Void in }
     
     var body: some View {
-        VStack(alignment: .leading) {
-            Spacer()
-                .frame(height: 10)
-            // キャンセルボタンとツイートボタン
-            Header(closeAction: canelTapped,
-                   tweetText: $state.tweetText)
-            
-            TweetInputArea(text: $state.tweetText)
-            
-            everyoneCanReply()
-                .padding(.leading, 20)
-            
-            Divider()
-            
-            ToolBar(tweetText: $state.tweetText)
+        WithViewStore(self.store) { viewStore in
+            VStack(alignment: .leading) {
+                Spacer()
+                    .frame(height: 10)
+                // キャンセルボタンとツイートボタン
+                Header(closeAction: canelTapped,
+                       tweetText: viewStore.binding(get: \.tweetText,
+                                                    send: SendTweetAction.tweetTextChange))
+                
+//                TweetInputArea(text: $state.tweetText)
+                TweetInputArea(text: viewStore.binding(get: \.tweetText,
+                                                       send: SendTweetAction.tweetTextChange))
+                
+                everyoneCanReply()
+                    .padding(.leading, 20)
+                
+                Divider()
+                
+                // tweetTextCount とかだけで良い
+                ToolBar(tweetText: viewStore.binding(get: \.tweetText,
+                                                    send: SendTweetAction.tweetTextChange))
+            }
+            .background(Color.background)
+            .cornerRadius(12)
         }
-        .background(Color.background)
-        .cornerRadius(12)
     }
 }
 
 struct Header: View {
     var closeAction = { () -> Void in }
+    
     @Binding var tweetText: String
     
     var body: some View {
@@ -89,7 +133,15 @@ func everyoneCanReply() -> some View {
 
 struct SendTweetView_Previews: PreviewProvider {
     static var previews: some View {
-        SendTweetView(state: SendTweetState())
-            .previewLayout(.fixed(width: 840, height: 900 ))
+        SendTweetView(
+            store: Store(
+                initialState: .init(),
+                reducer: sendTweetReducer,
+                environment: SendTweetEnvironment(
+                    mainQueue: .main
+                )),
+            state: SendTweetState()
+        )
+        .previewLayout(.fixed(width: 840, height: 900 ))
     }
 }
