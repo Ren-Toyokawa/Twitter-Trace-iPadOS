@@ -16,7 +16,8 @@ Atomic Design を模したディレクトリ構造になっています。
 のような感じです（例外はあります）
 
 ### サーバサイド
-Firebase を使用する予定です。  
+#### データベース
+Firebase
 
 ## アピールポイント
 ### svgファイルをShapeに変換するコマンドを作成
@@ -33,6 +34,10 @@ https://github.com/Ren-Toyokawa/Twitter-Trace/blob/master/Twitter-Trace/UI/Pages
 スクショ  
 ![Simulator Screen Shot - iPad Pro (12 9-inch) (5th generation) - 2021-05-05 at 11 09 52](https://user-images.githubusercontent.com/23397943/117090347-1344b600-ad93-11eb-9c3b-d3d40b26801c.png)
 
+
+
+## 環境構築手順
+firebase emulators:start
 
 ## Todo
 - [x] Home画面(ハリボテ)
