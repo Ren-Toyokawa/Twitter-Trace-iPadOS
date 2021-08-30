@@ -6,42 +6,48 @@
 //
 
 import Foundation
+import Firebase
 import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 
-/// データ構造はTwitterAPIのstatuses/updateに準拠
-func sendTweet(tweetText: String) {
-    let db = Firestore.firestore()
-    var ref: DocumentReference? = nil
-    ref = db.collection("tweet").addDocument(data: [
-        "created_at": Timestamp(date: Date()),
-        "id": UUID().uuidString,
-        "text": tweetText,
-        "truncated": false,
-        /// TODO ユーザーどうするかまだ決められていないため、仮で入れる
-        "user": "TEST_USER",
-        "geo": "",
-        "is_quote_status": false,
-        "retweet_count": 0,
-        "favorite_count": 0,
-        "favorited": false,
-        "retweeted": false,
-        "possibly_sensitive": false,
-        "lang":""
-    ]) { err in
-        if let err = err {
-            print("Error adding document: \(err)")
-        } else {
-            print("Document added with ID: \(ref!.documentID)")
+class TweetCollection {
+    
+    // データ構造はTwitterAPIのstatuses/updateに準拠
+    func post(tweetText: String) {
+        let db = Firestore.firestore()
+        var ref: DocumentReference? = nil
+        
+        ref = db.collection("tweet")
+            .addDocument(data: [
+            "created_at": Timestamp(date: Date()),
+            "id": UUID().uuidString,
+            "text": tweetText,
+            "truncated": false,
+            // TODO ユーザーどうするかまだ決められていないため、仮で入れる
+            "user": "TEST_USER",
+            "geo": "",
+            "is_quote_status": false,
+            "retweet_count": 0,
+            "favorite_count": 0,
+            "favorited": false,
+            "retweeted": false,
+            "possibly_sensitive": false,
+            "lang":""
+        ]) { err in
+            if let err = err {
+                print("Error adding document: \(err)")
+            } else {
+                print("Document added with ID: \(ref!.documentID)")
+            }
         }
     }
-    
-    
 }
 
+
 // MARK: - TweetObject
-struct TweetObject: Codable {
-    let createdAt: String
+struct TweetData: Codable {
+    let createdAt: String?
     let id: String
     let idStr: String
     let text: String

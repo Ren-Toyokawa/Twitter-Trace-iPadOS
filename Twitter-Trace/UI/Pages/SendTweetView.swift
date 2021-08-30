@@ -8,8 +8,8 @@
 import ComposableArchitecture
 import SwiftUI
 
-/// MARK: State
-struct TestState: Equatable {
+// MARK: State
+struct SendTweetState: Equatable {
     var userIcon = ""
     var tweetText = ""
     var image = ""
@@ -26,36 +26,27 @@ enum SendTweetAction: Equatable {
 // MARK: Environment
 struct SendTweetEnvironment {
     var mainQueue: AnySchedulerOf<DispatchQueue>
+    var tweetCollection: TweetCollection
 }
 
 // MARK: Reducer
-let sendTweetReducer = Reducer<TestState, SendTweetAction, SendTweetEnvironment> {
+let sendTweetReducer = Reducer<SendTweetState, SendTweetAction, SendTweetEnvironment> {
     state, action, environment in
     switch action {
     case let .tweetTextChange(tweetText):
-        print(tweetText)
         state.tweetText = tweetText
         return .none
     case .sendTweetButtonTapped:
+        // Firestore に Tweet 内容をpost
+        environment.tweetCollection.post(tweetText: state.tweetText)
         return .none
     }
 }
 
-// SendTweetView  の状態を保持するクラス
-class SendTweetState: ObservableObject {
-    // TODO: まだ確定していないメンバに関してはすべてStringで仮置き、決まり次第Replace
-    @Published var userIcon = ""
-    @Published var tweetText = ""
-    @Published var image = "";
-    @Published var gif = "";
-    @Published var geometry = "";
-}
-
 // MARK: View
-// Tweet 内容を入力し、送信するView
+// MARK: Tweet 内容を入力し、送信するView
 struct SendTweetView: View {
-    var store: Store<TestState, SendTweetAction> = Store(initialState: .init(), reducer: sendTweetReducer, environment: SendTweetEnvironment(mainQueue: .main))
-    @ObservedObject var state: SendTweetState
+    var store: Store<SendTweetState, SendTweetAction> = Store(initialState: .init(), reducer: sendTweetReducer, environment: SendTweetEnvironment(mainQueue: .main, tweetCollection: TweetCollection()))
     
     // Cancel をタップされた時の処理
     var canelTapped = { () -> Void in }
@@ -66,20 +57,20 @@ struct SendTweetView: View {
                 Spacer()
                     .frame(height: 10)
                 // キャンセルボタンとツイートボタン
-                Header(closeAction: canelTapped,
+                Header(viewStore: viewStore,
+                       closeAction: canelTapped,
                        tweetText: viewStore.binding(get: \.tweetText,
                                                     send: SendTweetAction.tweetTextChange))
-                
-//                TweetInputArea(text: $state.tweetText)
+                // ツイート入力エリア
                 TweetInputArea(text: viewStore.binding(get: \.tweetText,
                                                        send: SendTweetAction.tweetTextChange))
-                
+                // 全員が返信できます
                 everyoneCanReply()
                     .padding(.leading, 20)
                 
                 Divider()
                 
-                // tweetTextCount とかだけで良い
+                // ツールバー
                 ToolBar(tweetText: viewStore.binding(get: \.tweetText,
                                                     send: SendTweetAction.tweetTextChange))
             }
@@ -90,12 +81,14 @@ struct SendTweetView: View {
 }
 
 struct Header: View {
+    var viewStore: ViewStore<SendTweetState, SendTweetAction>
     var closeAction = { () -> Void in }
     
     @Binding var tweetText: String
     
     var body: some View {
         HStack {
+            // キャンセルボタン
             Text("キャンセル")
                 .font(.custom("", size: 18))
                 .foregroundColor(Color.baseColor)
@@ -105,12 +98,11 @@ struct Header: View {
             
             Spacer()
             
+            // ツイートするボタン
             TweetTextButton(isActive: !tweetText.isEmpty)
                 .onTapGesture {
                     if !tweetText.isEmpty {
-                        sendTweet(tweetText: tweetText)
-                        /// TODO: 非同期処理なので、ツイートするをタップ -> ツイート送信Viewを操作できなくする -> 送信完了したらクローズ
-                        /// TODO: というように変えたい
+                        self.viewStore.send(.sendTweetButtonTapped)
                         closeAction()
                     }
                 }
@@ -138,9 +130,9 @@ struct SendTweetView_Previews: PreviewProvider {
                 initialState: .init(),
                 reducer: sendTweetReducer,
                 environment: SendTweetEnvironment(
-                    mainQueue: .main
-                )),
-            state: SendTweetState()
+                    mainQueue: .main,
+                    tweetCollection: TweetCollection()
+                ))
         )
         .previewLayout(.fixed(width: 840, height: 900 ))
     }
