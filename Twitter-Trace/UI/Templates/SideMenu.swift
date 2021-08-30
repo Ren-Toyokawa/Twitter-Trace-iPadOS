@@ -115,8 +115,7 @@ struct ModalTweetSendView: View {
             Color.black.opacity(0.4)
                 .edgesIgnoringSafeArea(.vertical)
             
-            SendTweetView(state: SendTweetState(),
-                          canelTapped: canelTapped)
+            SendTweetView(canelTapped: canelTapped)
                 .frame(width: 840, height: 900)
                 .animation(.default.delay(0.1))
                 .transition(.move(edge: .bottom))

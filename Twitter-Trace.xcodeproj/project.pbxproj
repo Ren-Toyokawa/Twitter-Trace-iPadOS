@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -25,7 +25,7 @@
 		357893DD265628B10066E797 /* TweetTextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357893DC265628B10066E797 /* TweetTextButton.swift */; };
 		357893DF265628F10066E797 /* ToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357893DE265628F10066E797 /* ToolBar.swift */; };
 		357893E1265629200066E797 /* AddTweetInThreadButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357893E0265629200066E797 /* AddTweetInThreadButton.swift */; };
-		357893E326562A5E0066E797 /* TweetSendViewAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357893E226562A5E0066E797 /* TweetSendViewAction.swift */; };
+		357893E326562A5E0066E797 /* TweetCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357893E226562A5E0066E797 /* TweetCollection.swift */; };
 		357A285B26423881005964CD /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357A285A26423881005964CD /* HomeView.swift */; };
 		357A285D264373CD005964CD /* FilledLike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357A285C264373CD005964CD /* FilledLike.swift */; };
 		357A28602644C10C005964CD /* LikeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357A285F2644C10C005964CD /* LikeButton.swift */; };
@@ -61,6 +61,7 @@
 		35A13D8A262BDE77007A7A9E /* SearchTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A13D60262BDE77007A7A9E /* SearchTopic.swift */; };
 		35A13D8B262BDE77007A7A9E /* NewMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A13D61262BDE77007A7A9E /* NewMessage.swift */; };
 		35A13D8C262BDE77007A7A9E /* TopTweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A13D62262BDE77007A7A9E /* TopTweet.swift */; };
+		35CC333526C10D4700E125C3 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 35CC333426C10D4700E125C3 /* ComposableArchitecture */; };
 		35D2B88C263FB9BD0023A2EC /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D2B88B263FB9BD0023A2EC /* Text.swift */; };
 		35D2B88E264145130023A2EC /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D2B88D264145130023A2EC /* TextField.swift */; };
 		35D2B890264154BC0023A2EC /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D2B88F264154BC0023A2EC /* Config.swift */; };
@@ -124,7 +125,7 @@
 		357893DC265628B10066E797 /* TweetTextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetTextButton.swift; sourceTree = "<group>"; };
 		357893DE265628F10066E797 /* ToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolBar.swift; sourceTree = "<group>"; };
 		357893E0265629200066E797 /* AddTweetInThreadButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTweetInThreadButton.swift; sourceTree = "<group>"; };
-		357893E226562A5E0066E797 /* TweetSendViewAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetSendViewAction.swift; sourceTree = "<group>"; };
+		357893E226562A5E0066E797 /* TweetCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetCollection.swift; sourceTree = "<group>"; };
 		357A285A26423881005964CD /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		357A285C264373CD005964CD /* FilledLike.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilledLike.swift; sourceTree = "<group>"; };
 		357A285F2644C10C005964CD /* LikeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeButton.swift; sourceTree = "<group>"; };
@@ -194,6 +195,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35CC333526C10D4700E125C3 /* ComposableArchitecture in Frameworks */,
 				266CA48FF31601234B297512 /* Pods_Twitter_Trace.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -242,7 +244,7 @@
 		35001794262556250012179B /* Twitter-Trace */ = {
 			isa = PBXGroup;
 			children = (
-				359F387D264CE89100DFA6B5 /* Action */,
+				35137EE726DC9CF70010045D /* Service */,
 				35A13BC326287849007A7A9E /* UI */,
 				35001795262556250012179B /* Twitter_TraceApp.swift */,
 				35001797262556250012179B /* ContentView.swift */,
@@ -280,6 +282,30 @@
 			path = "Twitter-TraceUITests";
 			sourceTree = "<group>";
 		};
+		35137EE726DC9CF70010045D /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				35137EE826DC9D060010045D /* Firebase */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		35137EE826DC9D060010045D /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				35137EE926DC9D120010045D /* Firestore */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
+		35137EE926DC9D120010045D /* Firestore */ = {
+			isa = PBXGroup;
+			children = (
+				357893E226562A5E0066E797 /* TweetCollection.swift */,
+			);
+			path = Firestore;
+			sourceTree = "<group>";
+		};
 		357A2859264237DE005964CD /* Pages */ = {
 			isa = PBXGroup;
 			children = (
@@ -298,14 +324,6 @@
 				357893E0265629200066E797 /* AddTweetInThreadButton.swift */,
 			);
 			path = Button;
-			sourceTree = "<group>";
-		};
-		359F387D264CE89100DFA6B5 /* Action */ = {
-			isa = PBXGroup;
-			children = (
-				357893E226562A5E0066E797 /* TweetSendViewAction.swift */,
-			);
-			path = Action;
 			sourceTree = "<group>";
 		};
 		35A13BC326287849007A7A9E /* UI */ = {
@@ -463,6 +481,9 @@
 			dependencies = (
 			);
 			name = "Twitter-Trace";
+			packageProductDependencies = (
+				35CC333426C10D4700E125C3 /* ComposableArchitecture */,
+			);
 			productName = "Twitter-Trace";
 			productReference = 35001792262556250012179B /* Twitter-Trace.app */;
 			productType = "com.apple.product-type.application";
@@ -537,6 +558,9 @@
 				Base,
 			);
 			mainGroup = 35001789262556250012179B;
+			packageReferences = (
+				35CC333326C10D4700E125C3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+			);
 			productRefGroup = 35001793262556250012179B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -694,7 +718,7 @@
 				35A13D8B262BDE77007A7A9E /* NewMessage.swift in Sources */,
 				35A13D81262BDE77007A7A9E /* Retweet.swift in Sources */,
 				35A13D8A262BDE77007A7A9E /* SearchTopic.swift in Sources */,
-				357893E326562A5E0066E797 /* TweetSendViewAction.swift in Sources */,
+				357893E326562A5E0066E797 /* TweetCollection.swift in Sources */,
 				35A13D7D262BDE77007A7A9E /* svg13.swift in Sources */,
 				35D2B8B826422B170023A2EC /* SearchArea.swift in Sources */,
 				357A285D264373CD005964CD /* FilledLike.swift in Sources */,
@@ -1074,6 +1098,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		35CC333326C10D4700E125C3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.23.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		35CC333426C10D4700E125C3 /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 35CC333326C10D4700E125C3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3500178A262556250012179B /* Project object */;
 }
