@@ -8,16 +8,18 @@
 import SwiftUI
 
 /// 名称(@前)
-struct Name: View {
+struct UserScreenName: View {
+    @State var name:String
+    
     var body: some View {
-        Text("Ren Toyokawa")
+        Text(name)
             .modifier(NameLabel())
     }
 }
 
 struct Name_Previews: PreviewProvider {
     static var previews: some View {
-        Name()
+        UserScreenName(name: "Ren Toyokawa")
             .previewLayout(.fixed(width: 200, height: 100))
     }
 }

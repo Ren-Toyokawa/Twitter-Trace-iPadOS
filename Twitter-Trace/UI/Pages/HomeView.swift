@@ -10,7 +10,7 @@ import SwiftUI
 struct HomeView: View {
     var body: some View {
         SideMenu {
-            TimeLine()
+            Timeline()
                 .frame(width: 779, alignment: .center)
             
             Divider()

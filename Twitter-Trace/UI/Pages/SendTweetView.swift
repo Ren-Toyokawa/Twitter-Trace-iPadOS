@@ -26,7 +26,7 @@ enum SendTweetAction: Equatable {
 // MARK: Environment
 struct SendTweetEnvironment {
     var mainQueue: AnySchedulerOf<DispatchQueue>
-    var tweetCollection: TweetCollection
+    var tweetCollection: TweetClient
 }
 
 // MARK: Reducer
@@ -46,7 +46,7 @@ let sendTweetReducer = Reducer<SendTweetState, SendTweetAction, SendTweetEnviron
 // MARK: View
 // MARK: Tweet 内容を入力し、送信するView
 struct SendTweetView: View {
-    var store: Store<SendTweetState, SendTweetAction> = Store(initialState: .init(), reducer: sendTweetReducer, environment: SendTweetEnvironment(mainQueue: .main, tweetCollection: TweetCollection()))
+    var store: Store<SendTweetState, SendTweetAction> = Store(initialState: .init(), reducer: sendTweetReducer, environment: SendTweetEnvironment(mainQueue: .main, tweetCollection: TweetClient()))
     
     // Cancel をタップされた時の処理
     var canelTapped = { () -> Void in }
@@ -131,7 +131,7 @@ struct SendTweetView_Previews: PreviewProvider {
                 reducer: sendTweetReducer,
                 environment: SendTweetEnvironment(
                     mainQueue: .main,
-                    tweetCollection: TweetCollection()
+                    tweetCollection: TweetClient()
                 ))
         )
         .previewLayout(.fixed(width: 840, height: 900 ))
