@@ -9,12 +9,22 @@ import SwiftUI
 
 /// Tweet
 struct Tweet: View {
+    @State var userScreenName: String
+    @State var userName: String
+    @State var tweetedAt: Date
+    
+    @State var text: String
+    
+    @State var replyCount: Int
+    @State var retweetCount: Int
+    @State var likerCount: Int
+    
     var body: some View {
         VStack(alignment: .leading){
             HStack {
-                Name()
-                UserName()
-                TweetedAt()
+                UserScreenName(name: userScreenName)
+                UserName(userName: userName)
+                TweetedAt(tweetedAt: tweetedAt)
                 Spacer()
                 Action()
                     .fill(Color.lightGray)
@@ -22,20 +32,20 @@ struct Tweet: View {
             }
             
             // Tweet
-            Text("テストテストテストテストテスト\nテストテスト")
+            Text(text)
                 .modifier(TweetLabel())
             
             HStack(spacing: 82) {
                 // TODO: この共通化の仕方微妙な感じする
-                PublicMetrics(count: 15) {
+                PublicMetrics(count: replyCount) {
                     Reply()
                 }
                 
-                PublicMetrics(count: 18) {
+                PublicMetrics(count: retweetCount) {
                     Retweet()
                 }
                 
-                PublicMetricsButton(count: 28) {
+                PublicMetricsButton(count: likerCount) {
                     LikeButton()
                 }
                 
@@ -49,7 +59,13 @@ struct Tweet: View {
 
 struct Tweet_Previews: PreviewProvider {
     static var previews: some View {
-        Tweet()
+        Tweet(userScreenName: "Ren Toyokawa",
+              userName: "TestTest",
+              tweetedAt: Date(),
+              text: "今日から9月ってまじ?",
+              replyCount: 15,
+              retweetCount: 281,
+              likerCount: 1)
             .previewLayout(.fixed(width: 400, height: 150))
     }
 }

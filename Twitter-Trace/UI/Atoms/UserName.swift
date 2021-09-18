@@ -9,7 +9,7 @@ import SwiftUI
 
 /// ユーザ名(@以降)
 struct UserName: View {
-    let userName = "TestTest"
+    @State var userName: String
 
     var body: some View {
         HStack(spacing: 0) {
@@ -21,7 +21,7 @@ struct UserName: View {
 
 struct UserName_Previews: PreviewProvider {
     static var previews: some View {
-        UserName()
+        UserName(userName: "TestTest")
             .previewLayout(.fixed(width: 100, height: 100))
     }
 }
