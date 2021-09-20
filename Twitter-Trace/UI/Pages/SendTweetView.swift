@@ -5,83 +5,41 @@
 //  Created by 豊川廉 on 2021/05/16.
 //
 
-import ComposableArchitecture
 import SwiftUI
 
-// MARK: State
-struct SendTweetState: Equatable {
-    var userIcon = ""
-    var tweetText = ""
-    var image = ""
-    var gif = ""
-    var geometry = ""
-}
-
-// MARK: Action
-enum SendTweetAction: Equatable {
-    case tweetTextChange(String)
-    case sendTweetButtonTapped
-}
-
-// MARK: Environment
-struct SendTweetEnvironment {
-    var mainQueue: AnySchedulerOf<DispatchQueue>
-    var tweetCollection: TweetClient
-}
-
-// MARK: Reducer
-let sendTweetReducer = Reducer<SendTweetState, SendTweetAction, SendTweetEnvironment> {
-    state, action, environment in
-    switch action {
-    case let .tweetTextChange(tweetText):
-        state.tweetText = tweetText
-        return .none
-    case .sendTweetButtonTapped:
-        // Firestore に Tweet 内容をpost
-        environment.tweetCollection.post(tweetText: state.tweetText)
-        return .none
-    }
-}
-
-// MARK: View
-// MARK: Tweet 内容を入力し、送信するView
 struct SendTweetView: View {
-    var store: Store<SendTweetState, SendTweetAction> = Store(initialState: .init(), reducer: sendTweetReducer, environment: SendTweetEnvironment(mainQueue: .main, tweetCollection: TweetClient()))
+    @ObservedObject var viewModel = SendTweetViewModel()
     
     // Cancel をタップされた時の処理
     var canelTapped = { () -> Void in }
+    var sendCompletion = {() -> Void in}
     
     var body: some View {
-        WithViewStore(self.store) { viewStore in
-            VStack(alignment: .leading) {
-                Spacer()
-                    .frame(height: 10)
-                // キャンセルボタンとツイートボタン
-                Header(viewStore: viewStore,
-                       closeAction: canelTapped,
-                       tweetText: viewStore.binding(get: \.tweetText,
-                                                    send: SendTweetAction.tweetTextChange))
-                // ツイート入力エリア
-                TweetInputArea(text: viewStore.binding(get: \.tweetText,
-                                                       send: SendTweetAction.tweetTextChange))
-                // 全員が返信できます
-                everyoneCanReply()
-                    .padding(.leading, 20)
-                
-                Divider()
-                
-                // ツールバー
-                ToolBar(tweetText: viewStore.binding(get: \.tweetText,
-                                                    send: SendTweetAction.tweetTextChange))
-            }
-            .background(Color.background)
-            .cornerRadius(12)
+        VStack(alignment: .leading) {
+            Spacer()
+                .frame(height: 10)
+            // キャンセルボタンとツイートボタン
+            Header(
+                closeAction: canelTapped,
+                tweetText: $viewModel.tweetText)
+            // ツイート入力エリア
+            TweetInputArea(text: $viewModel.tweetText)
+            // 全員が返信できます
+            everyoneCanReply()
+                .padding(.leading, 20)
+            
+            Divider()
+            
+            // ツールバー
+            ToolBar(tweetText: $viewModel.tweetText)
         }
+        .background(Color.background)
+        .cornerRadius(12)
     }
 }
 
 struct Header: View {
-    var viewStore: ViewStore<SendTweetState, SendTweetAction>
+    var sendTweetAction = { () -> Void in }
     var closeAction = { () -> Void in }
     
     @Binding var tweetText: String
@@ -102,7 +60,7 @@ struct Header: View {
             TweetTextButton(isActive: !tweetText.isEmpty)
                 .onTapGesture {
                     if !tweetText.isEmpty {
-                        self.viewStore.send(.sendTweetButtonTapped)
+                        
                         closeAction()
                     }
                 }
@@ -125,15 +83,35 @@ func everyoneCanReply() -> some View {
 
 struct SendTweetView_Previews: PreviewProvider {
     static var previews: some View {
-        SendTweetView(
-            store: Store(
-                initialState: .init(),
-                reducer: sendTweetReducer,
-                environment: SendTweetEnvironment(
-                    mainQueue: .main,
-                    tweetCollection: TweetClient()
-                ))
-        )
-        .previewLayout(.fixed(width: 840, height: 900 ))
+        SendTweetView()
+            .previewLayout(.fixed(width: 840, height: 900 ))
+    }
+}
+
+
+import FirebaseFirestore
+class SendTweetViewModel: ObservableObject {
+    @Published var tweetText = ""
+    
+    private var tweetCollection = TweetCollection()
+    
+    func postTweet(tweetText: String) {
+        let tweet = TweetCollectionData(createdAt: Timestamp(date: Date()),
+                                        id: nil,
+                                        text: tweetText,
+                                        source: "",
+                                        userId: "11111111111", // TODO: user 機能実装
+                                        userScreenName: "Ren Toyokawa", // TODO: user 機能実装
+                                        userName: "TestTest", // TODO: user 機能実装
+                                        geo: "",
+                                        isQuoteRetweet: false,
+                                        isRetweet: false,
+                                        retweetCount: 0,
+                                        favoriteCount: 0,
+                                        favorited: false,
+                                        retweeted: false)
+        
+        
+        tweetCollection.add(collection: tweet)
     }
 }

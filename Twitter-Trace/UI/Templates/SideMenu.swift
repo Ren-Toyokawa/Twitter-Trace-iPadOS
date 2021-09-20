@@ -23,15 +23,13 @@ struct SideMenu<Content: View>: View {
                     withAnimation {
                         showSendTweetView.toggle()
                     }
-                },
-                showSendTweetButton: true)
+                })
                 .padding(.horizontal, 23)
-                   
+                
                 Divider()
                 content
             }
             
-            // TODO: Modal を表示させる処理をここに書くべきではない気がする。
             if showSendTweetView {
                 ModalTweetSendView {
                     withAnimation {
@@ -45,9 +43,7 @@ struct SideMenu<Content: View>: View {
 }
 
 struct SideMenuIcons: View {
-    // Cancel をタップされた時の処理
     var tweetButtonTapped = { () -> Void in }
-    var showSendTweetButton = false
     
     var body: some View {
         VStack(spacing: 41) {
@@ -91,14 +87,11 @@ struct SideMenuIcons: View {
             }
             
             Spacer()
-            
-            if showSendTweetButton {
-                // Tweet Button
-                TweetButton()
-                    .onTapGesture {
-                        tweetButtonTapped()
-                    }
-            }
+            // Tweet Button
+            TweetButton()
+                .onTapGesture {
+                    tweetButtonTapped()
+                }
             
             Spacer()
                 .frame(height: 34)
