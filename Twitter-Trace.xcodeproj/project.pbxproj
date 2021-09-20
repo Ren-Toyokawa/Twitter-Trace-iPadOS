@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -64,7 +64,6 @@
 		35BA190726F5E72900DE527D /* FirestoreCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BA190626F5E72900DE527D /* FirestoreCollection.swift */; };
 		35BA190A26F5E7CC00DE527D /* TweetCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BA190926F5E7CC00DE527D /* TweetCollection.swift */; };
 		35BA190D26F5E84D00DE527D /* TweetCollectionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BA190C26F5E84D00DE527D /* TweetCollectionData.swift */; };
-		35CC333526C10D4700E125C3 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 35CC333426C10D4700E125C3 /* ComposableArchitecture */; };
 		35D2B88C263FB9BD0023A2EC /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D2B88B263FB9BD0023A2EC /* Text.swift */; };
 		35D2B88E264145130023A2EC /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D2B88D264145130023A2EC /* TextField.swift */; };
 		35D2B890264154BC0023A2EC /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D2B88F264154BC0023A2EC /* Config.swift */; };
@@ -201,7 +200,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				35CC333526C10D4700E125C3 /* ComposableArchitecture in Frameworks */,
 				266CA48FF31601234B297512 /* Pods_Twitter_Trace.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -507,7 +505,6 @@
 			);
 			name = "Twitter-Trace";
 			packageProductDependencies = (
-				35CC333426C10D4700E125C3 /* ComposableArchitecture */,
 			);
 			productName = "Twitter-Trace";
 			productReference = 35001792262556250012179B /* Twitter-Trace.app */;
@@ -584,7 +581,6 @@
 			);
 			mainGroup = 35001789262556250012179B;
 			packageReferences = (
-				35CC333326C10D4700E125C3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 			);
 			productRefGroup = 35001793262556250012179B /* Products */;
 			projectDirPath = "";
@@ -1126,25 +1122,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		35CC333326C10D4700E125C3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.23.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		35CC333426C10D4700E125C3 /* ComposableArchitecture */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 35CC333326C10D4700E125C3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
-			productName = ComposableArchitecture;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3500178A262556250012179B /* Project object */;
 }
