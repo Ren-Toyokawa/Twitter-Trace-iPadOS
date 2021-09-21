@@ -32,21 +32,6 @@ struct Timeline: View {
     }
 }
 
-import FirebaseFirestore
-import FirebaseFirestoreSwift
-
-class TimelineViewModel: ObservableObject {    
-    @Published var timeline = [TweetCollectionData]()
-    
-    private var tweetCollection = TweetCollection()
-    
-    func fetchData() {
-        tweetCollection.fetchData(orderby: TweetCollectionData.CodingKeys.createdAt.rawValue, descending: true) { timeline in
-            self.timeline = timeline
-        }
-    }
-}
-
 struct TimeLine_Previews: PreviewProvider {
     static var previews: some View {
         Timeline()
