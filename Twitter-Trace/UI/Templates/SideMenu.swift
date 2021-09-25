@@ -12,8 +12,15 @@ struct SideMenu<Content: View>: View {
     
     @State private var showSendTweetView = false
     
+    var sendTweetCompletion = { () -> Void in }
+
     init(@ViewBuilder content: @escaping () -> Content) {
         self.content = content()
+    }
+    
+    init(@ViewBuilder content: @escaping () -> Content, sendTweetCompletion:@escaping () -> Void) {
+        self.content = content()
+        self.sendTweetCompletion = sendTweetCompletion
     }
     
     var body: some View {
@@ -31,12 +38,15 @@ struct SideMenu<Content: View>: View {
             }
             
             if showSendTweetView {
-                ModalTweetSendView {
-                    withAnimation {
-                        showSendTweetView.toggle()
-                    }
-                }
-                .zIndex(1.0)
+                ModalTweetSendView(
+                    canelTapped: {
+                        withAnimation {
+                            showSendTweetView.toggle()
+                            
+                        }
+                    },
+                    sendTweetCompletion: sendTweetCompletion)
+                    .zIndex(1.0)
             }
         }
     }
@@ -102,13 +112,15 @@ struct SideMenuIcons: View {
 struct ModalTweetSendView: View {
     // Cancel をタップされた時の処理
     var canelTapped = { () -> Void in }
+    var sendTweetCompletion = { () -> Void in }
     
     var body: some View {
         Group {
             Color.black.opacity(0.4)
                 .edgesIgnoringSafeArea(.vertical)
             
-            SendTweetView(canelTapped: canelTapped)
+            SendTweetView(canelTapped: canelTapped,
+                          sendCompletion: sendTweetCompletion)
                 .frame(width: 840, height: 900)
                 .animation(.default.delay(0.1))
                 .transition(.move(edge: .bottom))

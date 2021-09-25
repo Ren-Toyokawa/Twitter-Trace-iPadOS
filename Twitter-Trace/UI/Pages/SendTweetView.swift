@@ -20,6 +20,10 @@ struct SendTweetView: View {
                 .frame(height: 10)
             // キャンセルボタンとツイートボタン
             Header(
+                sendTweetAction: {
+                    viewModel.postTweet()
+                    sendCompletion()
+                },
                 closeAction: canelTapped,
                 tweetText: $viewModel.tweetText)
             // ツイート入力エリア
@@ -60,7 +64,7 @@ struct Header: View {
             TweetTextButton(isActive: !tweetText.isEmpty)
                 .onTapGesture {
                     if !tweetText.isEmpty {
-                        
+                        sendTweetAction()
                         closeAction()
                     }
                 }

@@ -13,10 +13,10 @@ class SendTweetViewModel: ObservableObject {
     
     private var tweetCollection = TweetCollection()
     
-    func postTweet(tweetText: String) {
+    func postTweet() {
         let tweet = TweetCollectionData(createdAt: Timestamp(date: Date()),
                                         id: nil,
-                                        text: tweetText,
+                                        text: self.tweetText,
                                         source: "",
                                         userId: "11111111111", // TODO: user 機能実装
                                         userScreenName: "Ren Toyokawa", // TODO: user 機能実装
