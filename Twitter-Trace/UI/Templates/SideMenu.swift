@@ -7,13 +7,17 @@
 
 import SwiftUI
 
+// MARK: SideMenu
+/// サイドメニュー
 struct SideMenu<Content: View>: View {
     let content: Content
-    
+    // MARK: データ
     @State private var showSendTweetView = false
     
+    // MARK: クロージャ
     var sendTweetCompletion = { () -> Void in }
 
+    // MARK: イニシャライザ
     init(@ViewBuilder content: @escaping () -> Content) {
         self.content = content()
     }
@@ -23,36 +27,45 @@ struct SideMenu<Content: View>: View {
         self.sendTweetCompletion = sendTweetCompletion
     }
     
+    // MARK: body
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .center, vertical: .center)) {
+            // サイドメニュー + サイドメニューの横に表示したいView
             HStack(alignment: .top) {
-                SideMenuIcons(tweetButtonTapped: {
-                    withAnimation {
-                        showSendTweetView.toggle()
+                SideMenuIcons(
+                    tweetButtonTapped: {
+                        withAnimation {
+                            showSendTweetView.toggle()
+                        }
                     }
-                })
+                )
                 .padding(.horizontal, 23)
                 
                 Divider()
                 content
             }
             
+            // ツイート送信View
             if showSendTweetView {
                 ModalTweetSendView(
                     canelTapped: {
                         withAnimation {
                             showSendTweetView.toggle()
-                            
                         }
                     },
-                    sendTweetCompletion: sendTweetCompletion)
-                    .zIndex(1.0)
+                    sendTweetCompletion: sendTweetCompletion
+                )
+                .zIndex(1.0)
             }
         }
     }
 }
 
+
+// MARK: SideMenuIcons
+/// サイドメニューに表示するアイコン
 struct SideMenuIcons: View {
+    // ツイートボタンタップ時の処理
     var tweetButtonTapped = { () -> Void in }
     
     var body: some View {
@@ -97,6 +110,7 @@ struct SideMenuIcons: View {
             }
             
             Spacer()
+            
             // Tweet Button
             TweetButton()
                 .onTapGesture {
@@ -109,11 +123,17 @@ struct SideMenuIcons: View {
     }
 }
 
+// MARK: ModalTweetSendView
+/// Tweet送信画面のモーダルウィンドウ
 struct ModalTweetSendView: View {
+    
     // Cancel をタップされた時の処理
     var canelTapped = { () -> Void in }
+    
+    // ツイート送信完了時に行う動作
     var sendTweetCompletion = { () -> Void in }
     
+    // MARK: body
     var body: some View {
         Group {
             Color.black.opacity(0.4)
@@ -128,6 +148,7 @@ struct ModalTweetSendView: View {
     }
 }
 
+// MARK: Previews
 struct SideMenu_Previews: PreviewProvider {
     static var previews: some View {
         SideMenu {
