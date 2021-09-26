@@ -42,6 +42,7 @@ protocol FirestoreColelction {
 }
 
 // MARK: FirestoreCollectionのデフォルト実装
+// TODO: Combine 対応をしたい
 extension FirestoreColelction {
     
     func add(collection: DataType){
